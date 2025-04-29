@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div id="login-form">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button id="login-button">Login</button>
+            <p id="login-error" class="error-message"></p>
+        </div>
+        <div id="app-content" class="hidden">
+            <h2>Welcome, <span id="username-display"></span>!</h2>
+            <p>You have successfully logged in via Telegram Mini App.</p>
+            <button id="send-user-info">Send User Info to Bot</button>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="script.js"></script>
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Expand the Mini App to full viewport initially
+
+        // Handle theme changes
+        tg.onEvent('themeChanged', function() {
+            document.body.className = tg.colorScheme;
+        });
+    </script>
+</body>
+</html>
